@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model TestProjetas.Web.Models.VehicleModel
+
+
+@using (Html.BeginForm("Save", "Vehicle", FormMethod.Post))
+{
+    <div class="row">
+        <div class="container">
+            <div>
+                <h2>Cadastro de Conta de Clientes</h2>
+            </div>
+            <div class="col-md-12">
+                <h5>Marca:</h5>
+                @Html.TextBoxFor(model => model.Brand, new { @class = "form-control", @required = "true" })
+            </div>
+            <div class="col-md-12">
+                <h5>Modelo:</h5>
+                @Html.TextBoxFor(model => model.Model, new { @class = "form-control", @required = "true" })
+            </div>
+            <div class="col-md-12">
+                <h5>Cor:</h5>
+                @Html.TextBoxFor(model => model.Color, new { @class = "form-control", @required = "true" })
+            </div>
+            <div class="col-md-12">
+                <h5>Descrição:</h5>
+                @Html.TextBoxFor(model => model.Description, new { @class = "form-control", @required = "true" })
+            </div>
+            <div class="col-md-12">
+                <h5>É novo?</h5>
+                @Html.TextBoxFor(model => model.IsZero, new { @class = "form-control", @required = "true" })
+            </div>
+
+            <div class="col-md-12">
+                <h5>Preço:</h5>
+                @Html.TextBoxFor(model => model.Price, new { @class = "form-control", @required = "true" })
+            </div>
+
+            <div class="col-md-12">
+                <h5>Ano:</h5>
+                @Html.TextBoxFor(model => model.Year, new { @class = "form-control", @required = "true" })
+            </div>
+
+            @if (Model != null && Model.Id > 0)
+            {
+                <div class="col-md-12">
+                    <h5>Data de Cadastro: @Model.RegistrationDate</h5>
+                </div>
+
+                <div class="col-md-12">
+                    <h5>Data de Atualização: @(Model.UpdateDate.HasValue ? Model.UpdateDate.Value.ToString() :"")</h5>
+                </div>
+            }
+
+
+            <div class="col-md-2">
+                <h5></h5>
+                <button class="btn btn-default" type="submit" role="link">
+                    Salvar
+                </button>
+
+                @Html.ActionLink("Cancelar", "Index", "Home", null, new { type = "button", @class = "btn btn-danger", @role = "link" })
+            </div>
+        </div>
+    </div>
+    @Html.HiddenFor(model => model.Id)
+}
