@@ -49,7 +49,7 @@ namespace TestProjetas.Web.Controllers
                 using (var testClient = new TestProjetasAPIService(new MediaTypeWithQualityHeaderValue("application/json")))
                 {
                     var url = string.Format("{0}{1}", _testProjetasAPIConfig.Value.Url, _testProjetasAPIConfig.Value.VehicleEndPoint);
-                    var vehicleData = Newtonsoft.Json.JsonConvert.DeserializeObject<List<VehiculeModel>>(await testClient.GetAsync(url));
+                    var vehicleData = Newtonsoft.Json.JsonConvert.DeserializeObject<List<VehicleModel>>(await testClient.GetAsync(url));
 
                     if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDirection)))
                     {
@@ -122,8 +122,8 @@ namespace TestProjetas.Web.Controllers
 
                     if (!string.IsNullOrEmpty(searchValue))
                     {
-                        vehicleData = vehicleData.Where(m => m.Brand.Contains(searchValue) || m.Color.ToString().Contains(searchValue) ||
-                                                                   m.Year.ToString().Contains(searchValue) || m.Model.Contains(searchValue)).ToList();
+                        vehicleData = vehicleData.Where(m => m.Brand.ToUpper().Contains(searchValue.ToUpper()) || m.Color.ToUpper().ToString().Contains(searchValue.ToUpper()) ||
+                                                                   m.Year.ToString().Contains(searchValue) || m.Model.ToUpper().Contains(searchValue.ToUpper())).ToList();
                     }
 
                     recordsTotal = vehicleData.Count();

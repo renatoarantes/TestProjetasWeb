@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TestProjetas.Web.Service
 {
-    public class TestProjetasAPIService : HttpClient, ITestProjetasAPIService
+    public class TestProjetasAPIService : HttpClient
     {
         #region Properties
         private MediaTypeWithQualityHeaderValue _mediaTypeWithQualityHeaderValue;
@@ -39,7 +39,7 @@ namespace TestProjetas.Web.Service
             }
         }
 
-        public async Task<string> PostAsync(string url, FormUrlEncodedContent content)
+        public async Task<string> PostAsync(string url, StringContent content)
         {
             string result = "";
             using (var httpClientHandler = new HttpClientHandler())
@@ -62,7 +62,7 @@ namespace TestProjetas.Web.Service
             }
         }
 
-        public new async Task<string> PutAsync(string url, HttpContent content)
+        public new async Task<string> PutAsync(string url, StringContent content)
         {
             string result = "";
             using (var httpClientHandler = new HttpClientHandler())

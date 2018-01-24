@@ -3,7 +3,7 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model TestProjetas.Web.Models.VehiculeModel
+@model TestProjetas.Web.Models.VehicleModel
 
 
 @using (Html.BeginForm("Save", "Vehicle", FormMethod.Post))
@@ -44,15 +44,17 @@
                 @Html.TextBoxFor(model => model.Year, new { @class = "form-control", @required = "true" })
             </div>
 
-            <div class="col-md-12">
-                <h5>Data de Cadastro:</h5>
-                @Html.TextBoxFor(model => model.RegistrationDate, new { @class = "form-control", @required = "true" })
-            </div>
+            @if (Model != null && Model.Id > 0)
+            {
+                <div class="col-md-12">
+                    <h5>Data de Cadastro: @Model.RegistrationDate</h5>
+                </div>
 
-            <div class="col-md-12">
-                <h5>Data de Atualização:</h5>
-                @Html.TextBoxFor(model => model.UpdateDate, new { @class = "form-control", @required = "true" })
-            </div>
+                <div class="col-md-12">
+                    <h5>Data de Atualização: @(Model.UpdateDate.HasValue ? Model.UpdateDate.Value.ToString() :"")</h5>
+                </div>
+            }
+
 
             <div class="col-md-2">
                 <h5></h5>

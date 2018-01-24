@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace TestProjetas.Web.Models
 {
-    public class VehiculeModel
+    public class VehicleModel
     {
         public int Id { get; set; }
 
